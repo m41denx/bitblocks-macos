@@ -1,0 +1,9 @@
+Building Bitblocks
+
+See doc/readme-qt.rst for instructions on building Bitblocks-Qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Bitblocks.
+
+See doc/build-*.txt for instructions on building bitblocksd,
+the intended-for-services, no-graphical-interface, reference
+implementation of Bitblocks.
