@@ -23,6 +23,17 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 
+
+BOOST_INCLUDE_PATH="/usr/local/opt/boost/include/"
+BOOST_LIB_PATH="/usr/local/opt/boost/lib/"
+OPENSSL_INCLUDE_PATH="/usr/local/opt/openssl@1.0/include/"
+OPENSSL_LIB_PATH="/usr/local/opt/openssl@1.0/lib/"
+BDB_INCLUDE_PATH="/usr/local/opt/berkeley-db\@4/include/"
+BDB_LIB_PATH="/usr/local/opt/berkeley-db\@4/lib"
+MINIUPNPC_INCLUDE_PATH="/usr/local/include/"
+#MINIUPNPC_LIB_PATH
+
+
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.5, 32-bit)
