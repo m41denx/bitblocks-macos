@@ -31,7 +31,7 @@ OPENSSL_LIB_PATH="/usr/local/opt/openssl@1.0/lib/"
 BDB_INCLUDE_PATH="/usr/local/opt/berkeley-db\@4/include/"
 BDB_LIB_PATH="/usr/local/opt/berkeley-db\@4/lib"
 MINIUPNPC_INCLUDE_PATH="/usr/local/include/"
-#MINIUPNPC_LIB_PATH
+MINIUPNPC_LIB_PATH="/usr/local/lib/"
 
 
 # use: qmake "RELEASE=1"
@@ -377,7 +377,7 @@ OTHER_FILES += README.md \
 
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
-    macx:BOOST_LIB_SUFFIX = -mt
+    macx:BOOST_LIB_SUFFIX = ""
     win32:BOOST_LIB_SUFFIX = -mgw44-mt-s-1_50
 }
 
