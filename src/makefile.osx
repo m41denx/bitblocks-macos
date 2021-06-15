@@ -7,17 +7,21 @@
 # Originally by Laszlo Hanyecz (solar@heliacal.net)
 
 CXX=llvm-g++
-DEPSDIR=/opt/local
+DEPSDIR=/usr/local
+DB4DIR="/usr/local/opt/berkeley-db\@4"
+OPENSSLDIR="/usr/local/opt/openssl\@1.0"
 
 INCLUDEPATHS= \
  -I"$(CURDIR)" \
- -I"$(CURDIR)"/obj \
+ -I"$(CURDIR)/obj" \
  -I"$(DEPSDIR)/include" \
- -I"$(DEPSDIR)/include/db48"
+ -I"$(DB4DIR)/include" \
+ -I"$(OPENSSLDIR)/include"
 
 LIBPATHS= \
  -L"$(DEPSDIR)/lib" \
- -L"$(DEPSDIR)/lib/db48"
+ -L"$(DB4DIR)/lib" \
+ -L"$(OPENSSLDIR)/lib"
 
 USE_UPNP:=1
 USE_IPV6:=1
@@ -31,25 +35,25 @@ ifdef STATIC
 TESTLIBS += \
  $(DEPSDIR)/lib/libboost_unit_test_framework-mt.a
 LIBS += \
- $(DEPSDIR)/lib/db48/libdb_cxx-4.8.a \
- $(DEPSDIR)/lib/libboost_system-mt.a \
- $(DEPSDIR)/lib/libboost_filesystem-mt.a \
- $(DEPSDIR)/lib/libboost_program_options-mt.a \
- $(DEPSDIR)/lib/libboost_thread-mt.a \
- $(DEPSDIR)/lib/libboost_chrono-mt.a \
- $(DEPSDIR)/lib/libssl.a \
- $(DEPSDIR)/lib/libcrypto.a \
+ $(DB4DIR)/lib/libdb_cxx-4.8.a \
+ $(DEPSDIR)/lib/libboost_system.a \
+ $(DEPSDIR)/lib/libboost_filesystem.a \
+ $(DEPSDIR)/lib/libboost_program_options.a \
+ $(DEPSDIR)/lib/libboost_thread.a \
+ $(DEPSDIR)/lib/libboost_chrono.a \
+ $(OPENSSLDIR)/lib/libssl.a \
+ $(OPENSSLDIR)/lib/libcrypto.a \
  -lz
 else
 TESTLIBS += \
- -lboost_unit_test_framework-mt
+ -lboost_unit_test_framework
 LIBS += \
  -ldb_cxx-4.8 \
- -lboost_system-mt \
- -lboost_filesystem-mt \
- -lboost_program_options-mt \
- -lboost_thread-mt \
- -lboost_chrono-mt \
+ -lboost_system \
+ -lboost_filesystem \
+ -lboost_program_options \
+ -lboost_thread \
+ -lboost_chrono \
  -lssl \
  -lcrypto \
  -lz
@@ -62,13 +66,13 @@ ifdef RELEASE
 # Compile for maximum compatibility and smallest size.
 # This requires that dependencies are compiled
 # the same way.
-CFLAGS = -mmacosx-version-min=10.5 -arch i386 -O3
+CFLAGS = -mmacosx-version-min=10.7 -arch x86_64 -O3
 else
 DEBUGFLAGS = -g
 endif
 
 # osx 10.9 has changed the stdlib default to libc++. To prevent some link error, you may need to use libstdc++
-CFLAGS += -stdlib=libstdc++
+#CFLAGS += -stdlib=libstdc++
 
 # ppc doesn't work because we don't support big-endian
 CFLAGS += -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter \
