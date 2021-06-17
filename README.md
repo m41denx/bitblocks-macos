@@ -1,6 +1,13 @@
 Bitblocks integration/staging tree
 ================================
 
+-----------
+**How to use:**
+- Install [Homebrew](https://brew.sh)
+- Install Qt 5 (`brew install qt@5`)
+- Download Bitblocks Wallet and run
+-----------
+
 http://www.bitblocks.cc
 
 Copyright (c) 2009-2014 Bitcoin Developers
