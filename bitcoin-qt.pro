@@ -32,20 +32,16 @@ BDB_INCLUDE_PATH="/usr/local/opt/berkeley-db\@4/include/"
 BDB_LIB_PATH="/usr/local/opt/berkeley-db\@4/lib"
 MINIUPNPC_INCLUDE_PATH="/usr/local/include/"
 MINIUPNPC_LIB_PATH="/usr/local/lib/"
+LIBS+= /usr/local/lib/libminiupnpc.a
+LIBS+= /usr/local/opt/openssl@1.0/lib/libssl.a
+LIBS+= /usr/local/opt/openssl@1.0/lib/libcrypto.a
+LIBS+= "/usr/local/opt/berkeley-db@4/lib/libdb_cxx-4.8.a"
 
 
-# use: qmake "RELEASE=1"
-contains(RELEASE, 1) {
-    # Mac: compile for maximum compatibility (10.5, 32-bit)
-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
-    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
-    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
 
-    !win32:!macx {
+
         # Linux: static link and extra security (see: https://wiki.debian.org/Hardening)
-        LIBS += -Wl,-Bstatic -Wl,-z,relro -Wl,-z,now
-    }
-}
+       
 
 !win32 {
     # for extra security against potential buffer overflows: enable GCCs Stack Smashing Protection
